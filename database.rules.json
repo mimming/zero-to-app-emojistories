@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "config": {
+      "whitelist": {
+        "$uid": {
+          ".validate": "newData.val() === true"
+        }
+      }
+    },
+    ".read": "auth != null",
+    ".write": "root.child('config/whitelist').child(auth.uid).exists()",
+    "public": {
+      "$image": {
+        ".write": "auth != null",
+        ".validate": "newData.hasChildren(['filePath']) && newData.child('uid').val() === auth.uid"
+      }
+    },
+    "emojis": {
+      ".read": true
+    }
+  }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2017 Google
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Firestories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/__/firebase/3.7.4/firebase-app.js"></script>
+    <script src="/__/firebase/3.7.4/firebase-auth.js"></script>
+    <script src="/__/firebase/3.7.4/firebase-storage.js"></script>
+    <script src="/__/firebase/3.7.4/firebase-database.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="/helpers.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css" />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <button id="signin-button">Sign In</button>
+    <button id="signout-button">Sign Out</button>
+    <h1>Firestories</h1>
+
+    <div id="firebaseui-auth-container"></div>
+
+    <label for="capture-photo">Capture photo</label><br />
+    <input type="file" accept="image/*" id="capture-photo" capture="camera"><br />
+    <input type="text" id="title-input" placeholder="Tile..." />
+    <p></p>
+
+    <ul id="stories"></ul>
+  </body>
+
+  <script>
+    // Set up UI elements
+    var storiesList = document.querySelector("#stories"),
+        authElm = document.querySelector('#firebaseui-auth-container'),
+        signinButton = document.querySelector("#signin-button"),
+        signoutButton = document.querySelector("#signout-button"),
+        imageInput = document.querySelector("#capture-photo"),
+        titleInput = document.querySelector("#title-input");
+
+    // Initialize Firebase
+    var auth = firebase.auth(),
+        storage = firebase.storage(),
+        database = firebase.database();
+
+    // Use FirebaseUI to set up Firebase Authentication
+    var firebaseui = new firebaseui.auth.AuthUI(auth);
+    var firebaseuiConfig = {
+      signInSuccessUrl: '/firestories-complete.html',
+      signInFlow: 'popup',
+      signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+      ],
+    };
+
+    signinButton.addEventListener('click', function(e) {
+      // Start the FirebaseUI
+      firebaseui.start('#firebaseui-auth-container',
+        firebaseuiConfig);
+    });
+
+    // Listen to authentication state changes to show appropriate UI
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        displayUserLoggedInState();
+      } else {
+        displayUserLoggedOutState();
+      }
+    });
+
+    // Sign out because ... sign out is important
+    signoutButton.addEventListener('click', function(e) {
+      firebase.auth().signOut();
+    });
+
+
+    // Handle a file select event
+    var handleFileSelect = function(e) {
+      var file = e.target.files[0];
+
+      // Generate a random name for the image
+      // And get a Storage reference.
+      var fileName = generateName();
+      var storageRef = storage.ref()
+        .child(auth.currentUser.uid)
+        .child(fileName);
+
+      // Upload image
+      storageRef.put(file).then(snapshot => {
+
+        // Get a Database reference.
+        var dbRef = database.ref('stories').push();
+
+        // Write the data to the database.
+        dbRef.set({
+          filePath: snapshot.metadata.fullPath,
+          downloadURL: snapshot.downloadURL,
+          title: titleInput.value,
+          uid: auth.currentUser.uid,
+        });
+
+      }).catch(error => {
+        alert(error);
+      });
+    };
+    imageInput.addEventListener('change', handleFileSelect, false);
+
+
+    // Listen from the latest 10 stories onwards, and display them
+    database.ref('stories')
+      .limitToLast(10)
+      .on('child_added', function(snapshot) {
+        displayStory(snapshot.val(), snapshot.key);
+    });
+
+    // Listen to whenever a story changes.
+    database.ref('stories')
+      .on('child_changed', function(snapshot) {
+        displayStory(snapshot.val(), snapshot.key);
+    });
+
+  </script>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2017 Google
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<html>
+<head>
+    <script src="/__/firebase/3.7.4/firebase-app.js"></script>
+    <script src="/__/firebase/3.7.4/firebase-auth.js"></script>
+    <script src="/__/firebase/3.7.4/firebase-storage.js"></script>
+    <script src="/__/firebase/3.7.4/firebase-database.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="/emojicolor.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.1/firebaseui.css"/>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<button id="signout-button">Sign Out</button>
+<h1>Emojisaic or somenonsensething</h1>
+<div id="firebaseui-auth-container"></div>
+
+<input type="file" accept="image/*" id="capture-photo" capture="camera"><br/>
+<span id="status"></span>
+<br/>
+
+<div id="emojiboard">
+</div>
+
+<script>
+    /** Auth and upload **/
+
+    var imageInput = document.querySelector("#capture-photo"),
+        statusOutput = document.querySelector("#status")
+    authElm = document.querySelector('#firebaseui-auth-container'),
+        signoutButton = document.querySelector("#signout-button");
+
+    var auth = firebase.auth(),
+        firebaseui = new firebaseui.auth.AuthUI(auth),
+        storage = firebase.storage(),
+        database = firebase.database();
+
+    /**
+     * Step AUTH 1: Use FirebaseUI to set it up easily.
+     */
+    firebaseui.start('#firebaseui-auth-container', {
+        signInSuccessUrl: '/emojiboard.html',
+        signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ],
+    });
+
+    /**
+     * Step AUTH 2: Listening to state change to show appropriate UI.
+     */
+    auth.onAuthStateChanged(function (user) {
+        console.log("onAuthStateChanged", user);
+        authElm.style.display = (user) ? 'none' : '';
+        signoutButton.style.display = (user) ? '' : 'none';
+    });
+
+    /**
+     * Step AUTH 3: Sign out because ... signing out is important.
+     */
+    signoutButton.addEventListener('click', function (e) {
+        auth.signOut();
+    });
+
+    var handleFileSelect = function (e) {
+        var file = e.target.files[0];
+
+        statusOutput.innerText = "uploading ...";
+
+        // Generate a random name for the image.
+        var fileName = generateName();
+        storage.ref().child('images/' + fileName).put(file).then(snapshot = > {
+            // Get a Database reference.
+            var dbRef = database.ref('public').push();
+
+        // Write the data to the database.
+        dbRef.set({
+            filePath: snapshot.metadata.fullPath,
+            downloadURL: snapshot.downloadURL,
+            uid: auth.currentUser.uid,
+        });
+
+        statusOutput.innerText = "done uploading...";
+    }).
+        catch(error = > {
+            console.error(error);
+    })
+        ;
+    };
+    // When we upload an image, handle it!
+    imageInput.addEventListener('change', handleFileSelect, false);
+
+    var generateName = function () {
+        // TODO(katfang): Maybe also pull auth.uid
+        if (database) {
+            var dbRef = database.ref('stories').push();
+            return dbRef.key;
+        } else {
+            return (new Date()).getTime();
+        }
+    };
+
+    /** Handle emoji **/
+
+    function insertEmoji(emoji) {
+        var color = emojiToColor(emoji);
+        var spot = findSpot(color);
+        // colorCanvasId("color", color);
+        color = colorWithAlpha(color);
+        // colorCanvasId("color-with-alpha", color);
+        if (spot === null) {
+            spot = findSpot(color);
+        }
+        setSpot(spot, emoji);
+    }
+
+    function findSpot(color) {
+        var minDifference = null;
+        var possibleSpots = [];
+        for (var x = 0; x < w; x++) {
+            for (var y = 0; y < h; y++) {
+                if (colorGrid[x][y] == undefined || emojiGrid[x][y].length != 0) {
+                    continue;
+                }
+                if (minDifference === null) {
+                    minDifference = colorDiff(color, colorGrid[x][y]);
+                    minSpot = [x, y];
+                }
+                var newDiff = colorDiff(color, colorGrid[x][y]);
+                if (newDiff < minDifference) {
+                    minDifference = newDiff;
+                    possibleSpots = [[x, y]];
+                } else if (newDiff == minDifference) {
+                    possibleSpots.push([x, y]);
+                }
+            }
+        }
+        if (minDifference !== null && minDifference < maxDifference) {
+            // console.log(minDifference);
+            return possibleSpots[Math.floor(Math.random() * possibleSpots.length)];
+        } else {
+            // console.log("No spot for you", minDifference);
+            return null;
+        }
+    }
+
+    /**
+     * Expect spot as [x,y]
+     */
+    function setSpot(spot, emoji) {
+        if (spot === null) {
+            return;
+        }
+        document.getElementById("emoji-" + spot[0] + "-" + spot[1]).innerHTML =
+            "<span class='emoji-display'>" + emoji + "</span>";
+        emojiGrid[spot[0]][spot[1]] = emoji;
+    }
+
+    // --- Pixelate the emoji
+    // cellsAcross -- how many cells across the image will be
+    // blockSize -- blockSize x blockSize gets turned into 1 emoji block
+    function loadTarget(imageURL, cellsAcross) {
+        var smallContext = document.createElement("canvas").getContext('2d');
+        var img = new Image();
+        img.src = imageURL;
+        img.onload = function pixelate() {
+            blockSize = img.width / cellsAcross;
+            w = Math.floor(img.width / blockSize);
+            h = Math.floor(img.height / blockSize);
+            smallContext.drawImage(img, 0, 0, w, h);
+            generateColorGrid(smallContext);
+            makeEmojiBoard(emojiboard, w, h);
+            listenToStream();
+        }
+    }
+
+    function generateColorGrid(smallContext) {
+        var data = smallContext.getImageData(0, 0, w, h).data;
+        for (var x = 0; x < w; x++) {
+            for (var y = 0; y < h; y++) {
+                var base = (x + y * w) * 4;
+                if (y == 0) {
+                    colorGrid[x] = [];
+                    emojiGrid[x] = [];
+                }
+                emojiGrid[x][y] = "";
+                if (data[base + 3] >= 200) {
+                    colorGrid[x][y] = data.slice(base, base + 4);
+                }
+            }
+        }
+    }
+
+    var pixelsPerBox = 16;
+    function makeEmojiBoard(emojiboard, w, h) {
+        var emojiboard = document.getElementById("emojiboard");
+        // emojiboard.style.gridTemplateColumns = (pixelsPerBox + "px ").repeat(w);
+        for (var y = 0; y < h; y++) {
+            var ul = document.createElement("ul");
+            for (var x = 0; x < w; x++) {
+                var div = document.createElement("li");
+                div.className = "emoji-square";
+                div.id = "emoji-" + x + "-" + y;
+                div.style.width = pixelsPerBox + "px";
+                div.style.height = pixelsPerBox + "px";
+                div.style.fontSize = pixelsPerBox - 2 + "px";
+                /*/ Shows the grid color
+                 if (colorGrid[y][x]) {
+                 div.style.backgroundColor = "rgba(" + colorGrid[y][x][0] + "," +
+                 colorGrid[y][x][1] + "," +
+                 colorGrid[y][x][2] + ",255)";
+                 }
+                 // */
+                ul.appendChild(div);
+            }
+            emojiboard.appendChild(ul);
+        }
+    }
+
+    function listenToStream() {
+        firebase.database().ref("emojis").on("child_added", (snapshot) = > {
+            var emojiList = [];
+        if (snapshot.val().characters) {
+            for (let emoji of snapshot.val().characters) {
+                emojiList.push(emoji);
+            }
+        } else if (snapshot.val().emoji) {
+            emojiList = snapshot.val().emoji.split(" ");
+        }
+
+        for (var i = 0; i < repeatTimes; i++) {
+            for (let emoji of emojiList) {
+                insertEmoji(emoji);
+            }
+        }
+    })
+        ;
+    };
+
+    // Sort of a hacky way to insert more emoji without uploading more images.
+    // These are only local.
+    // var emojiInput = document.getElementById("emoji-input").addEventListener("keyup", function() {
+    //   insertEmoji(this.value);
+    // });
+
+    var repeatTimes = 1;
+    var maxDifference = 6000; // The max difference the emoji can be from the set color.
+    var colorGrid = [];
+    var emojiGrid = [];
+    var w = 0;
+    var h = 0;
+
+    loadTarget("Rocket_75x75.png", 40);
+
+</script>
+
+</body>
+</html>

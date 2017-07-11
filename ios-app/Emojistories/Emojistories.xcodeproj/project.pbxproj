@@ -1,0 +1,399 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		483D8B9D3C476964F2D44C57 /* Pods_Emojistories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC7D20F5D1D7CED3E2C11867 /* Pods_Emojistories.framework */; };
+		D88812D41EBA5F4A00544CDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88812D31EBA5F4A00544CDC /* AppDelegate.swift */; };
+		D88812D91EBA5F4A00544CDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88812D71EBA5F4A00544CDC /* Main.storyboard */; };
+		D88812DB1EBA5F4A00544CDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88812DA1EBA5F4A00544CDC /* Assets.xcassets */; };
+		D88812DE1EBA5F4A00544CDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88812DC1EBA5F4A00544CDC /* LaunchScreen.storyboard */; };
+		D88812E61EBA5FAA00544CDC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D88812E51EBA5FAA00544CDC /* GoogleService-Info.plist */; };
+		D88812E81EBA74E300544CDC /* StoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88812E71EBA74E300544CDC /* StoryCollectionViewCell.swift */; };
+		D8E280721EBAA257007C2B62 /* EmojistoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E280701EBAA257007C2B62 /* EmojistoriesViewController.swift */; };
+		D8E280731EBAA257007C2B62 /* FirestoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E280711EBAA257007C2B62 /* FirestoriesViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4E432493D242954CF261EB08 /* Pods-Emojistories.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emojistories.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Emojistories/Pods-Emojistories.debug.xcconfig"; sourceTree = "<group>"; };
+		D88812D01EBA5F4A00544CDC /* Emojistories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emojistories.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D88812D31EBA5F4A00544CDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D88812D81EBA5F4A00544CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D88812DA1EBA5F4A00544CDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D88812DD1EBA5F4A00544CDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D88812DF1EBA5F4A00544CDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D88812E51EBA5FAA00544CDC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D88812E71EBA74E300544CDC /* StoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		D8E280701EBAA257007C2B62 /* EmojistoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojistoriesViewController.swift; sourceTree = "<group>"; };
+		D8E280711EBAA257007C2B62 /* FirestoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoriesViewController.swift; sourceTree = "<group>"; };
+		F80CF8824D122997D171BD42 /* Pods-Emojistories.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emojistories.release.xcconfig"; path = "Pods/Target Support Files/Pods-Emojistories/Pods-Emojistories.release.xcconfig"; sourceTree = "<group>"; };
+		FC7D20F5D1D7CED3E2C11867 /* Pods_Emojistories.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Emojistories.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D88812CD1EBA5F4900544CDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				483D8B9D3C476964F2D44C57 /* Pods_Emojistories.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		053A632C1576C7B8008B73AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC7D20F5D1D7CED3E2C11867 /* Pods_Emojistories.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A7B590AB1D49EA82C23FA74 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E432493D242954CF261EB08 /* Pods-Emojistories.debug.xcconfig */,
+				F80CF8824D122997D171BD42 /* Pods-Emojistories.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D88812C71EBA5F4900544CDC = {
+			isa = PBXGroup;
+			children = (
+				D88812D21EBA5F4A00544CDC /* Emojistories */,
+				D88812D11EBA5F4A00544CDC /* Products */,
+				9A7B590AB1D49EA82C23FA74 /* Pods */,
+				053A632C1576C7B8008B73AB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D88812D11EBA5F4A00544CDC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D88812D01EBA5F4A00544CDC /* Emojistories.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D88812D21EBA5F4A00544CDC /* Emojistories */ = {
+			isa = PBXGroup;
+			children = (
+				D8E280701EBAA257007C2B62 /* EmojistoriesViewController.swift */,
+				D8E280711EBAA257007C2B62 /* FirestoriesViewController.swift */,
+				D88812E51EBA5FAA00544CDC /* GoogleService-Info.plist */,
+				D88812D31EBA5F4A00544CDC /* AppDelegate.swift */,
+				D88812D71EBA5F4A00544CDC /* Main.storyboard */,
+				D88812DA1EBA5F4A00544CDC /* Assets.xcassets */,
+				D88812DC1EBA5F4A00544CDC /* LaunchScreen.storyboard */,
+				D88812DF1EBA5F4A00544CDC /* Info.plist */,
+				D88812E71EBA74E300544CDC /* StoryCollectionViewCell.swift */,
+			);
+			path = Emojistories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D88812CF1EBA5F4900544CDC /* Emojistories */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D88812E21EBA5F4A00544CDC /* Build configuration list for PBXNativeTarget "Emojistories" */;
+			buildPhases = (
+				ADA3F74BCCA7FA3FE4EC4FF4 /* [CP] Check Pods Manifest.lock */,
+				D88812CC1EBA5F4900544CDC /* Sources */,
+				D88812CD1EBA5F4900544CDC /* Frameworks */,
+				D88812CE1EBA5F4900544CDC /* Resources */,
+				4EE4CFA4F54348D9FBE7E45A /* [CP] Embed Pods Frameworks */,
+				5324DF0F9B525CFBF9337049 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Emojistories;
+			productName = Emojistories;
+			productReference = D88812D01EBA5F4A00544CDC /* Emojistories.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D88812C81EBA5F4900544CDC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Firebase;
+				TargetAttributes = {
+					D88812CF1EBA5F4900544CDC = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = QMEDZ5P47M;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D88812CB1EBA5F4900544CDC /* Build configuration list for PBXProject "Emojistories" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D88812C71EBA5F4900544CDC;
+			productRefGroup = D88812D11EBA5F4A00544CDC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D88812CF1EBA5F4900544CDC /* Emojistories */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D88812CE1EBA5F4900544CDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D88812DE1EBA5F4A00544CDC /* LaunchScreen.storyboard in Resources */,
+				D88812E61EBA5FAA00544CDC /* GoogleService-Info.plist in Resources */,
+				D88812DB1EBA5F4A00544CDC /* Assets.xcassets in Resources */,
+				D88812D91EBA5F4A00544CDC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4EE4CFA4F54348D9FBE7E45A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Emojistories/Pods-Emojistories-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5324DF0F9B525CFBF9337049 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Emojistories/Pods-Emojistories-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADA3F74BCCA7FA3FE4EC4FF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D88812CC1EBA5F4900544CDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8E280731EBAA257007C2B62 /* FirestoriesViewController.swift in Sources */,
+				D88812E81EBA74E300544CDC /* StoryCollectionViewCell.swift in Sources */,
+				D88812D41EBA5F4A00544CDC /* AppDelegate.swift in Sources */,
+				D8E280721EBAA257007C2B62 /* EmojistoriesViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D88812D71EBA5F4A00544CDC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D88812D81EBA5F4A00544CDC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D88812DC1EBA5F4A00544CDC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D88812DD1EBA5F4A00544CDC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D88812E01EBA5F4A00544CDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D88812E11EBA5F4A00544CDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D88812E31EBA5F4A00544CDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E432493D242954CF261EB08 /* Pods-Emojistories.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QMEDZ5P47M;
+				INFOPLIST_FILE = Emojistories/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.Emojistories;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D88812E41EBA5F4A00544CDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F80CF8824D122997D171BD42 /* Pods-Emojistories.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QMEDZ5P47M;
+				INFOPLIST_FILE = Emojistories/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.Emojistories;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D88812CB1EBA5F4900544CDC /* Build configuration list for PBXProject "Emojistories" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D88812E01EBA5F4A00544CDC /* Debug */,
+				D88812E11EBA5F4A00544CDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D88812E21EBA5F4A00544CDC /* Build configuration list for PBXNativeTarget "Emojistories" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D88812E31EBA5F4A00544CDC /* Debug */,
+				D88812E41EBA5F4A00544CDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D88812C81EBA5F4900544CDC /* Project object */;
+}
